@@ -13,16 +13,12 @@ use App\Http\Controllers\Api\ProductController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::middleware(['auth:sanctum','permission:manage products'])->group(function(){
-Route::apiResource('products', ProductController::class);
+
+Route::middleware(['auth:sanctum', 'permission:manage products'])->group(function () {
+    Route::apiResource('products', ProductController::class);
 });
 
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-
- 
 });
-Route::post("/register",);
-
-
