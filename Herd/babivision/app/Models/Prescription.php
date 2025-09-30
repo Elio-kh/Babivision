@@ -1,16 +1,33 @@
 <?php
-namespace App\Models;
 
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
-class Appointment extends Model
+class Prescription extends Model
 {
-use HasFactory;
-protected $fillable = ['user_id','scheduled_at','status','notes'];
+    use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'eye',
+        'sphere',
+        'cylinder',
+        'axis',
+        'add',
+        'issued_at'
+    ];
 
-public function user(){ return $this->belongsTo(User::class); }
+    protected $casts = [
+        'issued_at' => 'date',
+        'sphere' => 'decimal:2',
+        'cylinder' => 'decimal:2',
+        'add' => 'decimal:2'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
